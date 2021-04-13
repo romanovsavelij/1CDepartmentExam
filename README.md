@@ -1,5 +1,4 @@
-![tests](https://github.com/romanovsavelij/1CDepartmentExam/workflows/main.yml/badge.svg)
-
+![tests](https://github.com/romanovsavelij/1CDepartmentExam/actions/workflows/main.yml/badge.svg)
 
 # 1CDepartmentExam
 
