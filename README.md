@@ -16,7 +16,7 @@ python3 -m unittest tests/*
 ## TODO
 
 - [x] Система тестирования
-- [ ] Класс решения
+- [x] Класс решения
 - [ ] GithubActions
 - [ ] 
 - [ ] Docker? 

@@ -1,6 +1,7 @@
 from solution import Solution
 
 if __name__ == '__main__':
-    solution: Solution = Solution()
-    solution.input()
+    n = int(input())
+    solution: Solution = Solution(n)
     solution.solve()
+    print(solution)
