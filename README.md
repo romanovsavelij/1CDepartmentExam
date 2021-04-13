@@ -1,4 +1,8 @@
+![tests](https://github.com/romanovsavelij/1CDepartmentExam/workflows/main.yml/badge.svg)
+
+
 # 1CDepartmentExam
+
 Отбор на кафедру 1С в МФТИ.
 
 ## Установка
@@ -24,5 +28,5 @@ python3 -m unittest tests/*
 - [x] Система тестирования
 - [x] Класс решения
 - [x] GithubActions
-- [ ] 
+- [ ] Плашки в readme: процент покрытия тестами, проходит ли тесты.
 - [ ] Docker? 
