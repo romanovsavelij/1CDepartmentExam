@@ -3,20 +3,26 @@
 
 ## Установка
 
+```shell script
 pip3 install -r requirements.txt
+```
 
 ## Запуск
 
+```shell script
 python3 main.py
+```
 
 ## Тесты
 
+```shell script
 python3 -m unittest tests/*
+```
 
 ## TODO
 
 - [x] Система тестирования
 - [x] Класс решения
-- [ ] GithubActions
+- [x] GithubActions
 - [ ] 
 - [ ] Docker? 
