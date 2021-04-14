@@ -28,6 +28,7 @@ class GameParser:
                 if self.field[j][i]:
                     leftest = (i, j)
                     has_black = True
+                    break
             if has_black:
                 break
 
@@ -39,16 +40,17 @@ class GameParser:
                 if self.field[j][i]:
                     rightest = (i, j)
                     has_black = True
+                    break
             if has_black:
                 break
 
         print(leftest)
         print(rightest)
 
-        self.size = rightest[0] - leftest[0]
+        self.size = rightest[0] - leftest[0] + 1
         self.cell_size = self.size // 3
         self.top_left_corner = (leftest[0], leftest[1] - self.cell_size)
-        print(self.top_left_corner, self.cell_size)
+        print(f"top_left_corner: {self.top_left_corner}, cell_size: {self.cell_size}")
 
     def parse_cell(self, corner: Tuple[int, int]) -> Shape:
         square = self.field[corner[1]:corner[1]+self.cell_size, corner[0]:corner[0]+self.cell_size]

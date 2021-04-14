@@ -11,7 +11,9 @@ from src.image import ImageParser
 
 if __name__ == '__main__':
     image_parser = ImageParser("images/image1.png")
-    print(image_parser.parse_image())
+    # print(image_parser.parse_image())
     game_parser: GameParser = GameParser(image_parser.parse_image())
     game_parser.find_border()
     game_parser.parse_field()
+
+
