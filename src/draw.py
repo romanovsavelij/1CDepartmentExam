@@ -1,6 +1,7 @@
 from typing import Tuple
 
 from src.game_parser import Point
+import numpy as np
 
 
 class DrawLine:
