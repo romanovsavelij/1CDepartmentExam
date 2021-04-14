@@ -14,7 +14,7 @@ class Cell:
         self.field = field
 
     def identify_shape(self):
-        print(f"cell field: {self.field}")
+        # print(f"cell field: {self.field}")
         row = self.field.shape[0] // 2
         indicator = self.field[[row], :][0, :]
         return self.shape_by_indicator(indicator)
@@ -23,7 +23,7 @@ class Cell:
     def shape_by_indicator(indicator: np.array):
         '''Indicator is a row. We can indentify shape by this row.
         '''
-        print(f"indicator: {indicator}")
+        # print(f"indicator: {indicator}")
         # Remove leading and trailing True's
         prefix = 0
         while prefix < len(indicator) and indicator[prefix]:

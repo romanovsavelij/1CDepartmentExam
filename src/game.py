@@ -1,71 +1,33 @@
-from typing import Tuple
+from typing import List, Tuple
 
-from solution import Solution
-import numpy as np
-import pandas as pd
-from scipy import stats
-
-import numpy as np
-from skimage.io import imread
-
-from src.cell import Shape, Cell
+from src.cell import Shape
 
 
-class GameParser:
-    def __init__(self, field: np.ndarray):
-        self.field: np.ndarray = field
+class Game:
+    def __init__(self, field: List[List[Shape]]):
+        self.field = field
 
-    def find_border(self):
-        ''' Calculates top left corner and cell size
+    def get_win_line(self) -> Tuple[Tuple[int, int], Tuple[int, int]]:
+        '''Find out if someone won and return winning line's endpoints
         '''
-        leftest = (-1, -1)
-        for i in range(0, self.field.shape[1]):
-            # Iterate throw verticals
-            # Search for black cell
-            has_black = False
-            for j in range(0, self.field.shape[0]):
-                # print(parser.field[j][i][:])
-                if self.field[j][i]:
-                    leftest = (i, j)
-                    has_black = True
-                    break
-            if has_black:
-                break
-
-        rightest = (-1, -1)
-
-        for i in range(self.field.shape[1] - 1, -1, -1):
-            has_black = False
-            for j in range(0, self.field.shape[0]):
-                if self.field[j][i]:
-                    rightest = (i, j)
-                    has_black = True
-                    break
-            if has_black:
-                break
-
-        print(leftest)
-        print(rightest)
-
-        self.size = rightest[0] - leftest[0] + 1
-        self.cell_size = self.size // 3
-        self.top_left_corner = (leftest[0], leftest[1] - self.cell_size)
-        print(f"top_left_corner: {self.top_left_corner}, cell_size: {self.cell_size}")
-
-    def parse_cell(self, corner: Tuple[int, int]) -> Shape:
-        square = self.field[corner[1]:corner[1]+self.cell_size, corner[0]:corner[0]+self.cell_size]
-        cell: Cell = Cell(square)
-        shape = cell.identify_shape()
-        print(shape)
-        return shape
-
-    def parse_field(self):
-        # Iterate throw all the cells
-        shapes = [[Shape.EMPTY for i in range(3)] for j in range(3)]
         for i in range(3):
-            for j in range(3):
-                corner = (self.top_left_corner[0] + i * self.cell_size,
-                                self.top_left_corner[1] + j * self.cell_size)
-                print(f"corner: {corner}")
-                shapes[i][j] = self.parse_cell(corner)
-        print(shapes)
+            if Game.is_win(self.field[i]):
+                return ((i, 0), (i, 2))
+        for i in range(3):
+            line = [self.field[0][i], self.field[1][i], self.field[2][i]]
+            if Game.is_win(line):
+                return ((0, i), (2, i))
+        diag = [self.field[0][0], self.field[1][1], self.field[2][2]]
+        diag_inv = [self.field[2][0], self.field[1][1], self.field[0][2]]
+        if Game.is_win(diag):
+            return ((0, 0), (2, 2))
+        if Game.is_win(diag_inv):
+            return ((0, 2), (2, 0))
+        return ((-1, -1), (-1, -1))
+
+    @staticmethod
+    def is_win(line: List[Shape]):
+        '''Is this line winning?
+        '''
+        return line == 3 * [Shape.CIRCLE] or \
+               line == 3 * [Shape.CROSS]
