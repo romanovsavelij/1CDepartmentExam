@@ -15,4 +15,4 @@ class TestGame(unittest.TestCase):
             [False, True, True, True],
             [False, False, True, False]]))
         game.find_border()
-        self.assertEqual(game.top_left_corner, (1, 0))
+        self.assertEqual((game.top_left_corner.x, game.top_left_corner.y), (1, 0))
