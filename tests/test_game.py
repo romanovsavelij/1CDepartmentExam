@@ -3,7 +3,7 @@ import unittest
 from src.cell import Cell, Shape
 import numpy as np
 
-from src.game import GameParser
+from src.game_parser import GameParser
 
 
 class TestGame(unittest.TestCase):

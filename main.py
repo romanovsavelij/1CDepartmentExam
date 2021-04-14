@@ -15,8 +15,11 @@ if __name__ == '__main__':
 
     game_parser: GameParser = GameParser(image_parser.parse_image())
     game_parser.find_border()
+    print(f"top_left_corner: {self.top_left_corner}, cell_size: {self.cell_size}")
     shapes = game_parser.parse_field()
     print(f"shapes by columns: {shapes}")
 
     game: Game = Game(shapes)
     print(game.get_win_line())
+
+

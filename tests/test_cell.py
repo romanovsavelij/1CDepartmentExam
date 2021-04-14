@@ -5,11 +5,6 @@ import numpy as np
 
 
 class TestCell(unittest.TestCase):
-
-    def test_basic(self):
-        # cell: Cell = Cell([])
-        ...
-
     def test_indicator_empty(self):
         shape = Cell.shape_by_indicator(np.array([True, True, False, False, False, True]))
         self.assertEqual(shape, Shape.EMPTY)
