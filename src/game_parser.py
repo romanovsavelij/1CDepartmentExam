@@ -10,6 +10,9 @@ class Point:
         self.x = x
         self.y = y
 
+    def __str__(self):
+        return f"x: {self.x}, y: {self.y}"
+
 
 class GameParser:
     def __init__(self, field: np.ndarray):
@@ -48,13 +51,13 @@ class GameParser:
 
         self.size = rightest.x - leftest.x + 1
         self.cell_size = self.size // 3
-        self.top_left_corner = (max(leftest.x, 0), max(leftest.y - self.cell_size, 0))
+        self.top_left_corner = Point(max(leftest.x, 0), max(leftest.y - self.cell_size, 0))
 
-    def parse_cell(self, corner: Tuple[int, int]) -> Shape:
+    def parse_cell(self, corner: Point) -> Shape:
         '''Parse shape of a cell. Cell is given by it's
         top left corner. Cell size is self.cell_size
         '''
-        square = self.field[corner[1]:corner[1]+self.cell_size, corner[0]:corner.x+self.cell_size]
+        square = self.field[corner.y:corner.y+self.cell_size, corner.x:corner.x+self.cell_size]
         cell: Cell = Cell(square)
         shape = cell.identify_shape()
         return shape
@@ -66,7 +69,7 @@ class GameParser:
         shapes = [[Shape.EMPTY for i in range(3)] for j in range(3)]
         for i in range(3):
             for j in range(3):
-                corner = (self.top_left_corner.x + i * self.cell_size,
+                corner = Point(self.top_left_corner.x + i * self.cell_size,
                                 self.top_left_corner.y + j * self.cell_size)
                 shapes[i][j] = self.parse_cell(corner)
         return shapes
